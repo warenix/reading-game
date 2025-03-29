@@ -29,7 +29,13 @@ export default function GamePage() {
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const response = await fetch('/api/articles');
+        const customEndpoint = localStorage.getItem('articlesApiEndpoint');
+        const headers: HeadersInit = {};
+        if (customEndpoint) {
+          headers['X-Articles-Api-Endpoint'] = customEndpoint;
+        }
+
+        const response = await fetch('/api/articles', { headers });
         if (!response.ok) throw new Error('Failed to fetch articles');
         const articles = await response.json();
         const selectedArticle = articles.find((a: Article) => a.id === Number(articleId));

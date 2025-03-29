@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { BookOpen, Search } from 'lucide-react';
+import { BookOpen, Search, Settings } from 'lucide-react';
 import { articles } from './data/articles';
 import { useState } from 'react';
 
@@ -17,6 +17,15 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col items-center p-6">
       <div className="w-full max-w-4xl">
+        <div className="flex justify-end mb-4">
+          <Link href="/settings">
+            <Button variant="ghost" size="sm">
+              <Settings className="w-4 h-4 mr-2" />
+              Settings
+            </Button>
+          </Link>
+        </div>
+        
         <div className="text-center mb-12">
           <Link href="/" className="inline-block">
             <BookOpen className="w-16 h-16 mx-auto mb-6 text-primary" />
