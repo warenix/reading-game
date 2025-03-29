@@ -1,25 +1,43 @@
 {
   "pages": {
-    "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+    "/_not-found": [
+      "static/chunks/webpack-7c95dad09da23ab6.js",
+      "static/chunks/bf6a786c-6cf2410981a1200c.js",
+      "static/chunks/26-ae2968ec55d0bcbe.js",
+      "static/chunks/main-app-1198eec27dce82fb.js",
+      "static/chunks/app/_not-found-bafe50039b111b45.js"
     ],
     "/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/layout.css",
-      "static/chunks/app/layout.js"
+      "static/chunks/webpack-7c95dad09da23ab6.js",
+      "static/chunks/bf6a786c-6cf2410981a1200c.js",
+      "static/chunks/26-ae2968ec55d0bcbe.js",
+      "static/chunks/main-app-1198eec27dce82fb.js",
+      "static/css/c49a55c5debe1d50.css",
+      "static/chunks/app/layout-ed444c377ddd1899.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-7c95dad09da23ab6.js",
+      "static/chunks/bf6a786c-6cf2410981a1200c.js",
+      "static/chunks/26-ae2968ec55d0bcbe.js",
+      "static/chunks/main-app-1198eec27dce82fb.js",
+      "static/chunks/209-326850c43c7cf0b9.js",
+      "static/chunks/app/page-ed45d06dd9a13da5.js"
     ],
     "/game/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/game/page.js"
+      "static/chunks/webpack-7c95dad09da23ab6.js",
+      "static/chunks/bf6a786c-6cf2410981a1200c.js",
+      "static/chunks/26-ae2968ec55d0bcbe.js",
+      "static/chunks/main-app-1198eec27dce82fb.js",
+      "static/chunks/209-326850c43c7cf0b9.js",
+      "static/chunks/605-8246569ecc4682d1.js",
+      "static/chunks/app/game/page-43b4284221c4cb3a.js"
     ],
     "/game/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/game/loading.js"
+      "static/chunks/webpack-7c95dad09da23ab6.js",
+      "static/chunks/bf6a786c-6cf2410981a1200c.js",
+      "static/chunks/26-ae2968ec55d0bcbe.js",
+      "static/chunks/main-app-1198eec27dce82fb.js",
+      "static/chunks/app/game/loading-1d186c88a05b7244.js"
     ]
   }
 }
