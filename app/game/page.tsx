@@ -23,24 +23,24 @@ export default function GamePage() {
     score: 0,
     showExplanation: false,
     showHint: false,
-    answers: [],
+    answers: new Array(article?.questions?.length || 0).fill(undefined),
   });
 
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const customEndpoint = localStorage.getItem('articlesApiEndpoint');
-        const headers: HeadersInit = {};
-        if (customEndpoint) {
-          headers['X-Articles-Api-Endpoint'] = customEndpoint;
-        }
-
-        const response = await fetch('/api/articles', { headers });
+        const customEndpoint = localStorage.getItem('articlesApiEndpoint') || '/api/articles';
+        const response = await fetch(customEndpoint);
         if (!response.ok) throw new Error('Failed to fetch articles');
         const articles = await response.json();
         const selectedArticle = articles.find((a: Article) => a.id === Number(articleId));
         if (!selectedArticle) throw new Error('Article not found');
         setArticle(selectedArticle);
+        // Initialize answers array with the correct length
+        setGameState(prev => ({
+          ...prev,
+          answers: new Array(selectedArticle.questions.length).fill(undefined)
+        }));
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load questions');
       } finally {
@@ -80,10 +80,9 @@ export default function GamePage() {
   const handleAnswerSelect = (answerIndex: number) => {
     setGameState(prev => ({
       ...prev,
-      answers: [
-        ...prev.answers.slice(0, prev.currentQuestionIndex),
-        answerIndex,
-      ],
+      answers: prev.answers.map((ans, i) => 
+        i === prev.currentQuestionIndex ? answerIndex : ans
+      ),
       showHint: false,
     }));
   };
@@ -115,7 +114,7 @@ export default function GamePage() {
       score: 0,
       showExplanation: false,
       showHint: false,
-      answers: [],
+      answers: new Array(article.questions.length).fill(undefined),
     });
   };
 

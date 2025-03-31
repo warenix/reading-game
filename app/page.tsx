@@ -1,18 +1,60 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { BookOpen, Search, Settings } from 'lucide-react';
-import { articles } from './data/articles';
-import { useState } from 'react';
+import { BookOpen, Search, Settings, Loader2 } from 'lucide-react';
+import { Article } from './types';
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const customEndpoint = localStorage.getItem('articlesApiEndpoint') || '/api/articles';
+        const response = await fetch(customEndpoint);
+        if (!response.ok) throw new Error('Failed to fetch articles');
+        const data = await response.json();
+        setArticles(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load articles');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArticles();
+  }, []);
 
   const filteredArticles = articles.filter(article =>
     article.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto mb-4" />
+          <p className="text-lg text-gray-600 dark:text-gray-400">Loading articles...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-lg text-red-600 dark:text-red-400">{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col items-center p-6">
