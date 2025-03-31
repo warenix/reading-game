@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { BookOpen, Search, Settings, Loader2 } from 'lucide-react';
+import { BookOpen, Search, Settings, Loader2, Edit } from 'lucide-react';
 import { Article } from './types';
 
 export default function Home() {
@@ -59,7 +59,13 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col items-center p-6">
       <div className="w-full max-w-4xl">
-        <div className="flex justify-end mb-4">
+        <div className="flex justify-end gap-2 mb-4">
+          <Link href="/editor">
+            <Button variant="ghost" size="sm">
+              <Edit className="w-4 h-4 mr-2" />
+              Editor
+            </Button>
+          </Link>
           <Link href="/settings">
             <Button variant="ghost" size="sm">
               <Settings className="w-4 h-4 mr-2" />
